@@ -11,7 +11,9 @@ let url;
 if (process.env.NODE_ENV === 'dev') {
     url = 'mongodb://localhost:27017/cafe';
 } else {
-    url = 'mongodb+srv://luke-dev:AWuYyJNQMrRA77D1@dev-nddzw.mongodb.net/cafe';
+    //Es una variable creada en heroku y por el proceso de envarioment trae esa variable
+    //esta variable guarda la cadena de coneccion a mongo atlas DB
+    url = process.env.MONGO_CONNECT;
 }
 
 process.env.CONNECTION = url;
