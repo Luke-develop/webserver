@@ -21,11 +21,7 @@ mongoose.connection.openUri(process.env.CONNECTION, { useNewUrlParser: true, use
 });
 
 //usando rutas
-const usuarioApp = require('./rutas/usuario');
-app.use('/usuario', usuarioApp);
-
-const rutaApp = require('./rutas/mainRoute');
-app.use('/', rutaApp);
+app.use(require('./rutas/index'));
 
 app.listen(process.env.PORT, () => {
     console.log('escuchando al puerto: ', process.env.PORT);

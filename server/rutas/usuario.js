@@ -5,8 +5,12 @@ const Usuario = require('../../modelos/usuario');
 // En este caso rearmar un objeto.
 const _us = require('underscore');
 const bcrypt = require('bcrypt');
-app.get('/', (req, res) => {
+// se usa la destructuracion y solo traer la funcion que se necesita para analizar el token
+const { verificarToken, verificarAdmin } = require('../../middlewares/autenticaciones');
 
+app.get('/', [verificarToken, verificarAdmin], (req, res) => {
+
+    let user = req.usuario;
     Usuario.find({ estado: true }, 'nombre email role estado').exec((err, usuarios) => {
         if (err) {
             return res.status(400).json({
@@ -15,12 +19,13 @@ app.get('/', (req, res) => {
                 Error: err
             });
         }
-        Usuario.count({ estado: true }, (err, conteo) => {
+        Usuario.countDocuments({ estado: true }, (err, conteo) => {
             res.status(200).json({
                 ok: true,
                 mensaje: 'listado de usuarios registrados',
                 usuarios: usuarios,
-                total: conteo
+                total: conteo,
+                usuarioToken: user
             });
         });
 

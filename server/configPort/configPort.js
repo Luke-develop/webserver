@@ -15,5 +15,12 @@ if (process.env.NODE_ENV === 'dev') {
     //esta variable guarda la cadena de coneccion a mongo atlas DB
     url = process.env.MONGO_CONNECT;
 }
-
 process.env.CONNECTION = url;
+
+//configuracion del seed (semilla - secreto - autenticación)
+
+process.env.SEED = process.env.SEED || 'semilla-secreto-desarrollo';
+
+//Configuracion expiracion de token
+
+process.env.TOKEN_EXP = 60 * 60 * 24 * 30;
