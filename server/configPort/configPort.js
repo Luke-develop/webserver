@@ -1,3 +1,5 @@
+const { LOCAL_CLIENT_ID } = require('./Id_Cliente');
+
 // Configuracion del puerto de uso
 // si no existe un puerto configurado en el
 // process.env.PORT (hosting) 
@@ -24,3 +26,7 @@ process.env.SEED = process.env.SEED || 'semilla-secreto-desarrollo';
 //Configuracion expiracion de token
 
 process.env.TOKEN_EXP = 60 * 60 * 24 * 30;
+
+
+//Configuracion del client de google
+process.env.CLIENT_ID = process.env.CLIENT_ID || LOCAL_CLIENT_ID;

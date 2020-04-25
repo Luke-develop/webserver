@@ -1,6 +1,7 @@
 require('./configPort/configPort');
 const mongoose = require('mongoose');
 const express = require('express');
+
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -12,12 +13,10 @@ app.use(bodyParser.json());
 
 //mongoose - conexion
 mongoose.set('useCreateIndex', true);
-
 mongoose.connection.openUri(process.env.CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, (err, res) => {
     if (err) throw err;
     else
         console.log('Base de datos online');
-
 });
 
 //usando rutas
